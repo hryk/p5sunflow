@@ -11,7 +11,7 @@ import org.sunflow.image.Color;
 
 import processing.core.PApplet;
 import processing.core.PGraphics;
-import processing.core.PImage;
+//import processing.core.PImage;
 
 public class ProcessingDisplay implements Display {
 	protected PApplet applet;

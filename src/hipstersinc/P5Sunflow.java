@@ -2,6 +2,7 @@ package hipstersinc;
 
 import hipstersinc.sunflow.ProcessingDisplay;
 import hipstersinc.sunflow.SunflowCamera;
+//import hipstersinc.sunflow.SunflowLight;
 import hipstersinc.sunflow.SunflowScene;
 import hipstersinc.sunflow.light.PSLight;
 import hipstersinc.sunflow.shader.PSShader;
@@ -61,24 +62,37 @@ public class P5Sunflow extends PGraphics3D {
 	 * @param height
 	 * @param applet
 	 */
-	public P5Sunflow(int width, int height, PApplet applet) {
-		super(width, height, applet);
-		this.applet = applet;
+	public P5Sunflow() {
+		//super(width, height, applet);
+		super();
+		//this.applet = applet;
 		
-		if(applet != null) {
-			applet.width = width;
-			applet.height = height;
-			applet.registerDraw(this);
-		}
+		//if(applet != null) {
+		//	applet.width = width;
+		//	applet.height = height;
+		//	applet.registerDraw(this);
+		//}
 		
-		this.display = new ProcessingDisplay(applet, this);
-		this.scene = new SunflowScene(sunflow, display);
-		this.shapes = new ArrayList<PSShape>();
+		//this.display = new ProcessingDisplay(applet, this);
+		//this.scene = new SunflowScene(sunflow, display);
+		//this.shapes = new ArrayList<PSShape>();
 	}
-	
+
+	public void setParent(PApplet parent){
+		PApplet.println("setParent method invoked.");
+		this.parent = parent;
+		this.display = new ProcessingDisplay(parent, this);
+		this.parent.registerDraw(this);
+	}
+
+	public boolean canDraw() {
+		return parent.isDisplayable();
+	}
 	
 	protected void allocate() {
 		sunflow = new SunflowAPI();
+		this.scene = new SunflowScene(sunflow, display);
+		this.shapes = new ArrayList<PSShape>();
 		lights = new ArrayList<PSLight>();
 		
 	    pixelCount = width * height;
@@ -88,7 +102,7 @@ public class P5Sunflow extends PGraphics3D {
 	    for (int i = 0; i < pixelCount; i++) pixels[i] = backgroundColor;
 	    
 	    // Stolen directly from processing source
-	    if(mainDrawingSurface) {
+	    if(primarySurface) {
 	        cm = new DirectColorModel(32, 0x00ff0000, 0x0000ff00, 0x000000ff);;
 	        mis = new MemoryImageSource(width, height, pixels, 0, width);
 	        mis.setFullBufferUpdates(true);
@@ -114,6 +128,7 @@ public class P5Sunflow extends PGraphics3D {
 	// Processing Drawing Methods
 	
 	public void beginDraw() {
+		super.beginDraw();
 		hasRenderedFrame = false;
 		colorMode(RGB, 255);
 		
@@ -123,10 +138,11 @@ public class P5Sunflow extends PGraphics3D {
 	    camera = new SunflowCamera(SunflowCamera.PINHOLE, sunflow);
 		scene.defaults(width, height);
 		
-		super.beginDraw();
+		//super.beginDraw();
 	}
 	
 	public void draw() {
+		PApplet.println("top of draw method");
 		if(!hasRenderedFrame) {
 			render();
 		}
@@ -137,11 +153,11 @@ public class P5Sunflow extends PGraphics3D {
 	        mis.newPixels(pixels, cm, 0, width);
 	    }
 	    updatePixels();
-	    insideDraw = false;
+	    //insideDraw = false;
 	}
 	
 	// TODO: This is gross
-	private void render() {
+	public void render() {
 		hasRenderedFrame = true;
 
 		if(lights.size() == 0) {
@@ -152,15 +168,19 @@ public class P5Sunflow extends PGraphics3D {
 		}
 		
 		for(PSShape shape: shapes) {
+			PApplet.println("in render : Shape draw! ");
 			shape.draw();
 		}
 		
 		for(PSLight light : lights) {
+			PApplet.println("in render : Lights set! ");
 			light.set();
 		}
 		
-		setupCamera();
+		
 		scene.set();
+		setupCamera();
+		
 		display.showPreview(showPreview);
 		
 		if(dumpScene) {
@@ -175,7 +195,7 @@ public class P5Sunflow extends PGraphics3D {
 			sunflow.render(SunflowAPI.DEFAULT_OPTIONS, display);
 		}
 		
-		deallocate();
+		//deallocate(); // I cannot see anything when switch on deallocate...
 	}
 	
 	protected void render_triangles() {

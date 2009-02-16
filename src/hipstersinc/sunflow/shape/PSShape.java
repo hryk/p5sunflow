@@ -10,6 +10,7 @@ import org.sunflow.SunflowAPI;
 
 import processing.core.PGraphics;
 import processing.core.PMatrix;
+import processing.core.PMatrix3D; // added.
 
 public abstract class PSShape implements SceneDumpable {
 	//////////////////////////////////////////////////////////////////
@@ -40,7 +41,7 @@ public abstract class PSShape implements SceneDumpable {
 		this.sunflow = sunflow;
 		this.id = this.hashCode();
 		this.shaders = new ArrayList<PSShader>();
-		this.transform = new PMatrix();
+		this.transform = new PMatrix3D(); // PMatrix is interface class...
 		
 		generateName();
 	}
@@ -126,13 +127,13 @@ public abstract class PSShape implements SceneDumpable {
 	protected Float[] transform(Float[] points) {
 		float[] in = {points[0], points[1], points[2]};
 		float[] out = new float[3];
-		transform.mult3(in, out);
+		transform.mult(in, out);
 		return new Float[]{out[0], out[1], out[2]};
 	}
 
 	protected float[] transform(float[] in) {
 		float[] out = new float[3];
-		transform.mult3(in, out);
+		transform.mult(in, out);
 		return out;
 	}
 
