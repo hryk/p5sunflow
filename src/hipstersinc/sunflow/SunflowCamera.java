@@ -85,11 +85,11 @@ public class SunflowCamera implements SceneDumpable {
 		}
 
 		// Perform positioning
-		System.out.println("INCAMERAAAAAA " + sunflow);
-		System.out.println("INCAMERAAAAAA " + TRANSFORM);
-		System.out.println("INCAMERAAAAAA " + eye);
-		System.out.println("INCAMERAAAAAA " + target);
-		System.out.println("INCAMERAAAAAA " + up);
+//		System.out.println("INCAMERAAAAAA " + sunflow);
+//		System.out.println("INCAMERAAAAAA " + TRANSFORM);
+//		System.out.println("INCAMERAAAAAA " + eye);
+//		System.out.println("INCAMERAAAAAA " + target);
+//		System.out.println("INCAMERAAAAAA " + up);
 		
 		sunflow.parameter(TRANSFORM, Matrix4.lookAt(eye, target, up));
 		

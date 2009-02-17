@@ -28,8 +28,8 @@ public class PSShader implements SceneDumpable {
 	private float shininess;
 	private String type;
 	
-	private int samples = 12;
-	private float maxDist = 50f;
+	private int samples = 256;
+	private float maxDist = 100f;
 	
 	/**
 	 * Default Constructor

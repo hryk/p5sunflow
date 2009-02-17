@@ -38,7 +38,7 @@ public class PSLight implements SceneDumpable {
 	// Light Attributes
 	protected float power;
 	protected float[] radiance = {3, 3, 3};
-	protected int samples = 32;
+	protected int samples = 2;
 	protected String name;
 
 	/**
@@ -76,8 +76,10 @@ public class PSLight implements SceneDumpable {
 	 */
 	public final void set() {
 		if(type.equals(MESH)) {
+			System.out.println("Set Mesh Light");
 			setMeshlight();
 		} else if (type.equals(POINT)){
+			System.out.println("Set Point Light");
 			setPointlight();
 		} else {
 			System.err.println("Unknown Light Type: "+ type);
@@ -138,7 +140,7 @@ public class PSLight implements SceneDumpable {
 		
 		light.setVertices(vertices);
 		light.setTriangles(triangles);
-		light.setRadiance(5);
+		light.setRadiance(150);
 		
 		return light;
 	}
@@ -181,6 +183,7 @@ public class PSLight implements SceneDumpable {
 	 * Sets a meshlight on the API
 	 */
 	private void setMeshlight() {
+		System.out.println("setMeshlight : " + samples );
 		sunflow.parameter("radiance", null, radiance[0], radiance[1], radiance[2]);
 		sunflow.parameter("samples", samples);
 		sunflow.parameter("points", "point", "vertex", vertices);

@@ -128,17 +128,17 @@ public class P5Sunflow extends PGraphics3D {
 	// Processing Drawing Methods
 	
 	public void beginDraw() {
-		super.beginDraw();
+		//super.beginDraw();
 		hasRenderedFrame = false;
 		colorMode(RGB, 255);
 		
 		sunflow.reset();
 	    shaders = new HashMap<String, PSShader>();
 		
-	    camera = new SunflowCamera(SunflowCamera.PINHOLE, sunflow);
+	    camera = new SunflowCamera(SunflowCamera.THINLENS, sunflow); // originally, PINHOLE
 		scene.defaults(width, height);
 		
-		//super.beginDraw();
+		super.beginDraw();
 	}
 	
 	public void draw() {
@@ -161,9 +161,11 @@ public class P5Sunflow extends PGraphics3D {
 		hasRenderedFrame = true;
 
 		if(lights.size() == 0) {
+			PApplet.println("set Global illumination (point) at render");
 			scene.setGlobalIllumination(true);
 			pointlight(1, 1, 1, 0, 0, 0);
 		} else {
+			PApplet.println("set Global illumination at render");
 			scene.setGlobalIllumination(true);
 		}
 		

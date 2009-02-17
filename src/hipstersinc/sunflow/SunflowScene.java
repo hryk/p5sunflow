@@ -61,7 +61,7 @@ public class SunflowScene implements SceneDumpable {
 	private boolean globalIllumination = true;
 	
 	private String giEngine = "igi";
-	private int igiSamples = 32; //.TODO: 32
+	private int igiSamples = 64; //.TODO: 32
 	private int igiSets = 1;
 	private float igiC = 0.0003f;
 	private int igiBias = 0;
@@ -88,8 +88,8 @@ public class SunflowScene implements SceneDumpable {
 		setFilter(GAUSSIAN);
 		
 		setDiffusionDepth(1);
-		setReflectionDepth(0);
-		setRefractionDepth(0);
+		setReflectionDepth(4);
+		setRefractionDepth(4);
 	}
 	
 	/**

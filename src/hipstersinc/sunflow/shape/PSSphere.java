@@ -34,7 +34,7 @@ public class PSSphere extends PSShape {
 		}
 		
 		sunflow.geometry(name, "sphere");
-		sunflow.parameter("transform", Matrix4.translation(x, y, z).multiply(Matrix4.scale(radius)));
+		sunflow.parameter("transform", Matrix4.translation(x, y, z).multiply(Matrix4.scale( radius )));
 		sunflow.parameter("shaders", getShaderNames());
 		sunflow.instance(getInstanceName(), name);
 	}

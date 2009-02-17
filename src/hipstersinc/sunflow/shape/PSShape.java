@@ -37,12 +37,13 @@ public abstract class PSShape implements SceneDumpable {
 	 * Generic Shape Constructor
 	 * @param sunflow
 	 */
+
 	public PSShape(SunflowAPI sunflow) {
 		this.sunflow = sunflow;
 		this.id = this.hashCode();
 		this.shaders = new ArrayList<PSShader>();
 		this.transform = new PMatrix3D(); // PMatrix is interface class...
-		
+
 		generateName();
 	}
 
@@ -55,12 +56,12 @@ public abstract class PSShape implements SceneDumpable {
 	public void setShaders(List<PSShader> shaders) {
 		this.shaders = shaders;
 	}
-	
+
 	public void setShader(PSShader shader) {
 		this.shaders = new ArrayList<PSShader>();
 		this.shaders.add(shader);
 	}
-	
+
 	public List<PSShader> getShaders() {
 		return shaders;
 	}
@@ -73,10 +74,10 @@ public abstract class PSShape implements SceneDumpable {
 		return shaderStrings;
 	}
 
-	
+
 	//////////////////////////////////////////////////////////////////
 	// Convertion from 2d to 1d datasets
-	
+
 	protected float[] flatten(List<Float[]> in) {
 		if(in.size() < 1) {
 			return new float[0];
@@ -111,7 +112,6 @@ public abstract class PSShape implements SceneDumpable {
 	}
 	
 	
-	
 	//////////////////////////////////////////////////////////////////
 	// Transforms
 	
@@ -140,7 +140,7 @@ public abstract class PSShape implements SceneDumpable {
 	
 	//////////////////////////////////////////////////////////////////
 	// Getters & Settings
-	
+
 	protected String getInstanceName() {
 		return String.format("%s.instance", this.name);
 	}
