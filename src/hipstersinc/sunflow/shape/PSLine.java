@@ -17,7 +17,7 @@ public class PSLine extends PSShape {
 		PSLine line = new PSLine(sunflow);
 		line.setVertices(vertices, vertexCount);
 		line.setWidth(width);
-		line.setLines(lines, lineCount);
+		//line.setLines(lines, lineCount);
 		return line;
 	}
 	
