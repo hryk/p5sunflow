@@ -53,7 +53,8 @@ public class PSShader implements SceneDumpable {
 		if(a < 1) {
 			type = GLASS;
 		} else {
-			type = DIFFUSE;
+			//type = DIFFUSE;
+			type = AMBIENT_OCCULSION;
 		}
 	}
 	

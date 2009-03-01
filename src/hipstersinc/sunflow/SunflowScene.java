@@ -80,6 +80,15 @@ public class SunflowScene implements SceneDumpable {
 	 * Sets up a reasonable default environment
 	 */
 	public final void defaults() {
+		
+		/** anti-alias setting 
+		 * 
+		 * - quick undersampled preview:          -2 0
+	     * - preview with some edge refinement:    0 1
+	     * - final rendering:                      1 2
+		 *
+		 */
+		
 		setAaMin(0);
 		setAaMax(1);
 		setAaSamples(1);
@@ -101,6 +110,7 @@ public class SunflowScene implements SceneDumpable {
 		setWidth(width);
 		setHeight(height);
 		defaults();
+		//System.out.println("SunflowScene: bounds"+renderergetBounds());
 	}
 
 	/**

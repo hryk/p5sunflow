@@ -181,7 +181,10 @@ public class P5Sunflow extends PGraphics3D {
 		
 		
 		scene.set();
+
+		System.out.println("after scene.set : " + sunflow.getBounds().toString());
 		setupCamera();
+		System.out.println("after camera.set : " + sunflow.getBounds().toString());
 		
 		display.showPreview(showPreview);
 		
@@ -194,6 +197,7 @@ public class P5Sunflow extends PGraphics3D {
 				dump(dumpingFileName);
 			}
 		} else {
+			// sunflowのrenderに渡すdisplayとしてsunflowのdisplayを親とするProcessing用のdisplayを渡してる
 			sunflow.render(SunflowAPI.DEFAULT_OPTIONS, display);
 		}
 		

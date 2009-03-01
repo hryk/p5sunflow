@@ -13,6 +13,7 @@ public class PSSphere extends PSShape {
 	public PSSphere(SunflowAPI sunflow) {
 		super(sunflow);
 		this.radius = 10;
+		System.out.println("Invoke: PSSphere Constructor");
 	}
 	
 	public PSSphere(SunflowAPI sunflow, float radius, float x, float y, float z) {
@@ -35,6 +36,7 @@ public class PSSphere extends PSShape {
 		
 		sunflow.geometry(name, "sphere");
 		sunflow.parameter("transform", Matrix4.translation(x, y, z).multiply(Matrix4.scale( radius )));
+		//sunflow.parameter("transform", Matrix4.translation(x, y, z).multiply(Matrix4.scale( radius )).multiply(Matrix4.scale((float) 0.35)));
 		sunflow.parameter("shaders", getShaderNames());
 		sunflow.instance(getInstanceName(), name);
 	}
