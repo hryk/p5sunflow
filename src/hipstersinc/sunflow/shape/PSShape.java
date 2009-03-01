@@ -185,9 +185,9 @@ public abstract class PSShape implements SceneDumpable {
 		
 		for(int i=0; i<triangleCount; i++) {
 			Integer[] t = {
+					triangles[i][0],
 					triangles[i][1],
-					triangles[i][2],
-					triangles[i][3]
+					triangles[i][2]
 			};
 			
 			this.triangles.add(t);

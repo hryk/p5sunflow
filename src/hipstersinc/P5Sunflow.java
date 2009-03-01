@@ -204,22 +204,18 @@ public class P5Sunflow extends PGraphics3D {
 		//deallocate(); // I cannot see anything when switch on deallocate...
 	}
 	
-	protected void render_triangles() {
-		if(triangleCount > 0) {
-			PSPolygon shape = PSPolygon.fromProcessing(sunflow, vertices, vertexCount, triangles, triangleCount);
-			shape.setShader(currentFillShader());
-			shapes.add(shape);
-		}
+	protected void renderTriangles(int start, int stop) {
+		PSPolygon shape = PSPolygon.fromProcessing(sunflow, vertices, vertexCount, triangles, triangleCount);
+		shape.setShader(currentFillShader());
+		shapes.add(shape);
 	}
 	
 	
-	protected void render_lines() {
-		if(lineCount > 0) {
-			PSLine line = PSLine.fromProcessing(sunflow, vertices, vertexCount, lines, lineCount, strokeWeight);
-			line.addTransform(forwardTransform);
-			line.setShader(currentFillShader());
-			shapes.add(line);
-		}
+	protected void renderLines(int start, int stop) {
+                PSLine line = PSLine.fromProcessing(sunflow, vertices, vertexCount, lines, lineCount, strokeWeight);
+                line.addTransform(forwardTransform);
+                line.setShader(currentFillShader());
+                shapes.add(line);
 	}
 	
 
